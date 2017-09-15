@@ -43,8 +43,13 @@ alias gp='git push'
 alias sql='mysql -u root -p***REMOVED*** --database=weatherbell'
 alias gulp='nocorrect gulp'
 
-export PATH=$PATH:${HOME}/.composer/vendor/bin/:${HOME}/.local/bin/:${HOME}/anaconda3/bin:/Applications/MAMP/Library/bin
+test -e ${HOME}/.composer && export PATH=$PATH:${HOME}/.composer/vendor/bin/
+test -e ${HOME}/.local && export PATH=$PATH:${HOME}/.local/bin/
+test -e ${HOME}/anaconda3 && export PATH=$PATH:${HOME}/anaconda3/bin/
+test -e /Applications/MAMP && export PATH=$PATH:/Applications/MAMP/Library/bin/
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-fpath=(~/.zsh/completions $fpath)
+test -e ${HOME}/.zsh && fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
-eval "$(thefuck --alias)"
+if hash thefuck 2>/dev/null; then
+  eval "$(thefuck --alias)"
+fi
