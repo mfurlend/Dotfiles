@@ -40,7 +40,10 @@ alias gu='git add -u'
 alias gcm='git commit -m'
 alias grc='git commit --amend --no-verify --no-edit'
 alias gp='git push'
-alias sql='mysql -u root -p***REMOVED*** --database=weatherbell'
+if [[ -e ${HOME}/.passwords/wb_db ]]; then
+  DBPWD=$(<${HOME}/.passwords/wb_db)
+  alias sql="mysql -u root -p${DBPWD} --database=weatherbell"
+fi
 alias gulp='nocorrect gulp'
 
 test -e ${HOME}/.composer && export PATH=$PATH:${HOME}/.composer/vendor/bin/
@@ -53,3 +56,7 @@ autoload -U compinit && compinit
 if hash thefuck 2>/dev/null; then
   eval "$(thefuck --alias)"
 fi
+if hash pygmentize 2>/dev/null; then
+  alias ccat='pygmentize -O style=monokai -f console256 -g'
+fi
+
