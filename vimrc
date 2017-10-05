@@ -1,9 +1,9 @@
-execute pathogen#infect()
 syntax on
+colorscheme tender
+
 filetype plugin indent on
 syntax enable
 set background=dark
-colorscheme hybrid_material
 nnoremap <F5> :UndotreeToggle<cr>
 if has("persistent_undo")
 	set undodir=~/.undodir/
